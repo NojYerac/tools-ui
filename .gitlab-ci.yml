@@ -1,0 +1,33 @@
+---
+stages:
+  - build
+
+image: "docker.dev.whs/trc_rd/builder-node:latest"
+
+Build_Stage:
+  stage: build
+  script:
+    - "npm install && \
+      npm run stage && \
+      rm -rf /var/opt/nfs/stage-static/trc-tools && \
+      cp -Rf dist /var/opt/nfs/stage-static/trc-tools"
+  tags:
+    - deploy
+    - prod
+    - nfs
+  only:
+    - stage
+
+Build_Prod:
+  stage: build
+  script:
+    - "npm install && \
+      npm run dist && \
+      rm -rf /var/opt/nfs/static/trc-tools && \
+      cp -Rf dist /var/opt/nfs/static/trc-tools"
+  tags:
+    - deploy
+    - prod
+    - nfs
+  only:
+    - master

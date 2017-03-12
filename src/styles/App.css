@@ -1,0 +1,13 @@
+/*App wide css changes*/
+
+
+/*
+Make ListItem and EnhancedButton render normally on chrome
+re: https://github.com/callemall/material-ui/issues/4008
+*/
+a[type="button"] {
+  -webkit-appearance: none;
+}
+span[type="button"] {
+  -webkit-appearance: none;
+}
